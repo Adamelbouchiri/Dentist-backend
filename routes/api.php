@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\SecondRegistrationController;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
@@ -18,7 +19,11 @@ Route::get('/', function () {
 
 Route::apiResource('appointments', AppointmentController::class);
 
+Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/second-registration', [SecondRegistrationController::class, 'store'])->middleware('auth:sanctum');
-Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum'); 
+
+//GoogleAuth
+Route::get('/auth/google/redirect', [GoogleAuthController::class, 'redirect']);
+Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
