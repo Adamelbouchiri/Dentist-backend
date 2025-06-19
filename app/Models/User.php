@@ -51,4 +51,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Appointment::class);
     }
+
+    public function secondRegistration()
+    {
+        return $this->hasOne(secondRegistration::class);
+    }
+
 }

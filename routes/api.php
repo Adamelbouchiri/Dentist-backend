@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SecondRegistrationController;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,5 +19,6 @@ Route::get('/', function () {
 Route::apiResource('appointments', AppointmentController::class);
 
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/second-registration', [SecondRegistrationController::class, 'store'])->middleware('auth:sanctum');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum'); 
