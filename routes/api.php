@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FacebookAuthController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\SecondRegistrationController;
 use Illuminate\Container\Attributes\Auth;
@@ -27,3 +28,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 //GoogleAuth
 Route::get('/auth/google/redirect', [GoogleAuthController::class, 'redirect']);
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
+
+//FacebookAuth
+Route::get('/auth/facebook/redirect', [FacebookAuthController::class, 'facebookRedirect']);
+Route::get('/auth/facebook/callback', [FacebookAuthController::class, 'facebookCallback']);
