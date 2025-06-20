@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,6 +14,12 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasApiTokens;
+
+    public function sendPasswordResetNotification($token)
+    {
+        $url = config('app.frontend_url') . '/reset-password?token=' . $token . '&email=' . $this->email;
+        $this->notify(new CustomResetPasswordNotification($url));
+    }
 
     /**
      * The attributes that are mass assignable.
