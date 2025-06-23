@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('google_id')->nullable();
             $table->string('facebook_id')->nullable(); 
             $table->string('avatar')->nullable();
+            $table->boolean('second_registration_done')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

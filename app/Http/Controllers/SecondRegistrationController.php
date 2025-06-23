@@ -26,6 +26,11 @@ class SecondRegistrationController extends Controller
 
     $secondRegistration = $request->user()->secondRegistration()->create($data);
 
+    $user = $request->user();
+    $user->update([
+        'second_registration_done' => true,
+    ]);
+
     return $secondRegistration;
 }
 
