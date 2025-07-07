@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\ResetPasswordController as AuthResetPasswordContro
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FacebookAuthController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\SecondRegistrationController;
 use Illuminate\Container\Attributes\Auth;
@@ -38,3 +39,6 @@ Route::get('/auth/facebook/callback', [FacebookAuthController::class, 'facebookC
 //Reset Password
 Route::post('/forgot-password', [ResetPasswordController::class, 'sendResetLink']);
 Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword']);
+
+//Stripe
+Route::post('/create-payment-intent', [PaymentController::class, 'createIntent']);
