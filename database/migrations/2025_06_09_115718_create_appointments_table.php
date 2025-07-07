@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('title');
-            $table->string('description');
+            $table->string('service');
+            $table->string('doctor');
+            $table->date('date');
+            $table->time('time');
+            $table->string('status');
+            $table->string('payment_status');
             $table->timestamps();
         });
     }
