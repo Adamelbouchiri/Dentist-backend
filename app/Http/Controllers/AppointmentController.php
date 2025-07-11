@@ -32,13 +32,18 @@ class AppointmentController extends Controller implements HasMiddleware
     public function store(Request $request)
     {
         $field = $request->validate([
-            'title' => 'required|max:255',
-            'description' => 'required',
+            'service' => 'required|string',
+            'price' => 'required|integer',
+            'doctor' => 'required|string',
+            'date' => 'required|date',
+            'time' => 'required|date_format:H:i',
+            'status' => 'required|string',
+            'payment_status' => 'required|string',
         ]);
 
-        $appointment = $request->user()->appointments()->create($field);
+        $request->user()->appointments()->create($field);
 
-        return $appointment;
+        return ["message" => "Appointment created successfully"];
     }
 
     /**

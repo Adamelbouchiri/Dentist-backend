@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('service');
+            $table->integer('price');
             $table->string('doctor');
             $table->date('date');
             $table->time('time');
