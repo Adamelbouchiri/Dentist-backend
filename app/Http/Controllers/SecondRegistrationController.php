@@ -34,4 +34,9 @@ class SecondRegistrationController extends Controller
     return $secondRegistration;
 }
 
+    public function show(Request $request)
+    {
+        return $request->user()->secondRegistration()->first();
+    }
+
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\SecondRegistrationController;
+use App\Http\Controllers\UserSettingsController;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,10 +23,12 @@ Route::get('/', function () {
 });
 
 Route::apiResource('appointments', AppointmentController::class);
+Route::get('user-appointments', [AppointmentController::class, 'userAppointments'])->middleware('auth:sanctum');
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/second-registration', [SecondRegistrationController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/user-second-registration', [SecondRegistrationController::class, 'show'])->middleware('auth:sanctum');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum'); 
 
 //GoogleAuth
@@ -42,3 +45,8 @@ Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword']
 
 //Stripe
 Route::post('/create-payment-intent', [PaymentController::class, 'createIntent']);
+
+//Settings
+Route::post('/update-avatar', [UserSettingsController::class, 'changeAvatar'])->middleware('auth:sanctum');
+Route::post('/update-name', [UserSettingsController::class, 'changeName'])->middleware('auth:sanctum');
+Route::post('/update-password', [UserSettingsController::class, 'changePassword'])->middleware('auth:sanctum');

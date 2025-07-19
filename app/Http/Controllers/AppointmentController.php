@@ -26,6 +26,11 @@ class AppointmentController extends Controller implements HasMiddleware
         return Appointment::all();
     }
 
+    public function userAppointments(Request $request) 
+    {
+        return $request->user()->appointments()->get();
+    }
+
     /**
      * Store a newly created resource in storage.
      */
