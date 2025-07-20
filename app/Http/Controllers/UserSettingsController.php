@@ -10,10 +10,10 @@ class UserSettingsController extends Controller
     public function changeAvatar(Request $request) {
 
         $request->validate([
-            'file' => 'required|image|mimes:png|max:5120',
+            'avatar' => 'required|image|mimes:png,jpg,jpeg|max:5120',
         ]);
 
-        $file = $request->file('file');
+        $file = $request->file('avatar');
 
         $fileHash = hash('sha256', file_get_contents($file));
         $extension = $file->getClientOriginalExtension();
