@@ -53,14 +53,14 @@ class UserSettingsController extends Controller
 
     public function changePassword(Request $request) {
         $request->validate([
-        'current_password' => 'required',
+        'currentPassword' => 'required|min:8',
         'password' => 'required|confirmed|min:8',
         ]);
 
         $user = $request->user();
 
         // Check if current password is correct
-        if (!Hash::check($request->current_password, $user->password)) {
+        if (!Hash::check($request->currentPassword, $user->password)) {
             return response()->json(['message' => 'Current password is incorrect'], 422);
         }
 
