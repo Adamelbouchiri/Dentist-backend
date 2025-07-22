@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
+            $table->string('role')->default('user');
             //OAuth Fields
             $table->string('google_id')->nullable();
             $table->string('facebook_id')->nullable(); 
