@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\Auth\ResetPasswordController as AuthResetPasswordController;
 use App\Http\Controllers\AuthController;
@@ -50,3 +51,9 @@ Route::post('/create-payment-intent', [PaymentController::class, 'createIntent']
 Route::post('/update-avatar', [UserSettingsController::class, 'changeAvatar'])->middleware('auth:sanctum');
 Route::post('/update-name', [UserSettingsController::class, 'changeName'])->middleware('auth:sanctum');
 Route::post('/update-password', [UserSettingsController::class, 'changePassword'])->middleware('auth:sanctum');
+
+//Admin part
+Route::get('/admin/appointments', [AdminController::class, 'index'])->middleware('auth:sanctum');
+Route::put('/admin/appointments/{id}', [AdminController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/admin/appointments/{id}', [AdminController::class, 'destroy'])->middleware('auth:sanctum');
+

@@ -65,7 +65,7 @@ class AppointmentController extends Controller implements HasMiddleware
     public function update(Request $request, Appointment $appointment)
     {
 
-        Gate::authorize('modify', $appointment);
+        Gate::authorize('modify');
 
         $field = $request->validate([
             'title' => 'required|max:255',
@@ -82,7 +82,7 @@ class AppointmentController extends Controller implements HasMiddleware
      */
     public function destroy(Appointment $appointment)
     {
-        Gate::authorize('modify', $appointment);
+        Gate::authorize('modify');
 
         $appointment->delete();
 
